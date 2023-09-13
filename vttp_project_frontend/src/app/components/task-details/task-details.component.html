@@ -1,0 +1,39 @@
+<h2>Task Details</h2>
+
+<div class="row">
+  <div class="col-md-6">
+    <h3>Incomplete</h3>
+    <div *ngIf="getTasks().length > 0; else noTasks">
+      <div class="card mb-3" *ngFor="let task of getTasks()">
+        <div class="card-body">
+          <h5 class="card-title">{{ task.dueDate| date }}</h5>
+          <h6 class="card-subtitle mb-2 text-body-secondary">{{ task.priority | titlecase }}</h6>
+          <p class="card-text">{{ task.content }}</p>
+          <a href="#" class="btn btn-primary btn-sm me-1" (click)="completeTask(task.id)">Mark  as Complete</a>
+          <a href="#" class="btn btn-danger btn-sm" (click)="removeTask(task.id)">Remove</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <h3>Complete</h3>
+    <div *ngIf="getTasks(true).length > 0; else noTasks">
+      <div class="card mb-3" *ngFor="let task of getTasks(true)">
+        <div class="card-body">
+          <h5 class="card-title">{{ task.dueDate | date }}</h5>
+          <h6 class="card-subtitle mb-2 text-body-secondary">{{ task.priority | titlecase }}</h6>
+          <p class="card-text">{{ task.content }}</p>
+          <a href="#" class="btn btn-warning btn-sm me-1" (click)="incompleteTask(task.id)">Mark as Incomplete</a>
+          <a href="#" class="btn btn-danger btn-sm" (click)="removeTask(task.id)">Remove</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noTasks>
+  <div>
+    <p>No tasks to display!</p>
+  </div>
+</ng-template>

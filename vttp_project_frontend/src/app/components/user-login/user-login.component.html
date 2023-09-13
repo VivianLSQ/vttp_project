@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h2>User Login</h2>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div>
+          <label for="email">Email</label>
+          <input type="email" id="email" formControlName="email" required >
+          <ng-container  class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+            <label for="email" *ngIf="email.getError('required')"> Email is required</label>
+            <label for="email" *ngIf="email.getError('email')"> Invalid Email Format</label>
+            <label for="email" *ngIf="email.getError('maxLength')"> Email cannot exceed 50 characters.</label>
+          </ng-container>
+        </div>
+
+        <div>
+          <label for="username">Username</label>
+          <input type="text" id="username" formControlName="username" required >
+          <ng-container  class="alert alert-danger" *ngIf="username.invalid && (username.dirty || username.touched)">
+            <label for="username" *ngIf="username.getError('required')"> Username is required </label>
+            <label for="username" *ngIf="username.getError('minLength')"> Username must be at least 10 characters long.</label>
+            <label for="username" *ngIf="username.getError('maxLength')"> Username cannot exceed 30 characters.</label>
+          </ng-container>
+        </div>
+
+        <div>
+          <label for="password">Password</label>
+          <input type="password" id="password" formControlName="password" required>
+            <ng-container  class="alert alert-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
+              <label for="password" *ngIf="password.getError('required')"> Password is required </label>
+              <label for="password" *ngIf="password.getError('minLength')"> Password must comprise of at least 10 characters.</label>
+              <label for="password" *ngIf="password.getError('maxLength')"> Password cannot exceed 50 characters.</label>
+            </ng-container>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid"> Login </button>
+      </form>
+    </div>
+  </div>
+</div>
+

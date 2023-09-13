@@ -1,0 +1,72 @@
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+
+  <div class="mb-3">
+    <label for="content" class="form-label">Content</label>
+    <input type="text" class="form-control" id="content" formControlName="content">
+    <small class="text-danger" *ngIf="content?.errors?.['required']">
+      content is required.
+    </small>
+    <small class="text-danger" *ngIf="content?.errors?.['minlength']">
+      Please key in at least 5 characters.
+    </small>
+  </div>
+
+  <div class="mb-3">
+    <div class="form-check form-check-inline">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="importance" id="inlineCheckbox1" formControlName="priority" value="low" checked>
+        <label class="form-check-label" for="inlineCheckbox1">Low Importance</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="priority" id="inlineCheckbox2" formControlName="priority" value="high">
+        <label class="form-check-label" for="inlineCheckbox2">High Importance</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="urgence" id="inlineCheckbox3" formControlName="priority" value="low">
+        <label class="form-check-label" for="inlineCheckbox3">Low Urgency</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="urgence" id="inlineCheckbox4" formControlName="priority" value="high">
+        <label class="form-check-label" for="inlineCheckbox4">High Urgency</label>
+      </div>
+    <small class="text-danger" *ngIf="priority?.errors?.['required']">
+      Kindly specify the priority of the task
+    </small>
+  </div>
+
+  <div class="mb-3">
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="work" id="inlineRadio1" formControlName="category" value="work" checked>
+      <label class="form-check-label" for="inlineRadio1">Low</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="personal" id="inlineRadio2" formControlName="category" value="personal">
+      <label class="form-check-label" for="inlineRadio2">Medium</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="leisure" id="inlineRadio3" formControlName="category" value="leisure">
+      <label class="form-check-label" for="inlineRadio3">High</label>
+    </div>
+    <small class="text-danger" *ngIf="category?.errors?.['required']">
+      Category is a mandatory field.
+    </small>
+  </div>
+
+
+  <div class="mb-3">
+    <label for="due" class="form-label">Due Date</label>
+    <input type="date" class="form-control" id="dueDate" formControlName="dueDate">
+    <small class="text-danger" *ngIf="due?.errors?.['required']">
+      Due date is a mandatory field.
+    </small>
+    <small class="text-danger" *ngIf="due?.errors?.['duePastDate']">
+      Due date must be in the future.
+    </small>
+  </div>
+
+  <button type="submit" class="btn btn-success" [disabled]="!taskForm.valid">Add New Task</button>
+</div>
+
+</form>
+
+

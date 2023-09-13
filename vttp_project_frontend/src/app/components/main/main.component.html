@@ -1,0 +1,24 @@
+<div class="card my-5">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Task Content</th>
+          <th scope="col">Date Added</th>
+          <th scope="col">Due Date</th>
+          <th scope="col">Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of tasks">
+          <td>{{ task.id }}</td>
+          <td>{{ task.content }}</td>
+          <td>{{ task.dateAdded }}</td>
+          <td>{{ task.dueDate }}</td>
+          <td>{{ task.notes }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
