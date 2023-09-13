@@ -5,20 +5,36 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import sg.nus.edu.iss.vttp_project.config.JwtConfig;
 import sg.nus.edu.iss.vttp_project.models.User;
+import sg.nus.edu.iss.vttp_project.models.UserPrincipal;
+import sg.nus.edu.iss.vttp_project.repositories.UserRepository;
 
 @Service 
-public class AuthService {
+public class AuthService implements UserDetailsService {
 
     //Using Json Web Token
 
     @Autowired
     private final JwtConfig jwtConfig;
+    @Autowired
+    private UserRepository userRepo;
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepo.getUserByUsername(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("Username not found!");
+        }
+        return new UserPrincipal(user);
+    }
 
     public AuthService(JwtConfig jwtConfig) {
         this.jwtConfig = jwtConfig;

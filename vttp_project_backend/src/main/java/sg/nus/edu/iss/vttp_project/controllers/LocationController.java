@@ -1,6 +1,7 @@
 package sg.nus.edu.iss.vttp_project.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.protobuf.DescriptorProtos.SourceCodeInfo.Location;
 
 import sg.nus.edu.iss.vttp_project.models.Locations;
 import sg.nus.edu.iss.vttp_project.services.LocationService;
@@ -26,6 +26,8 @@ public class LocationController {
 
     @Autowired
     private OneMapService mapSvc; 
+    @Autowired 
+    private LocationService locationSvc; 
     
     public LocationController(OneMapService mapSvc) {
         this.mapSvc = mapSvc;
@@ -38,32 +40,30 @@ public class LocationController {
 
     //Able to make a get request to '/api/onemap/routing'
 
-    //Use Location API here 
-    @GetMapping
-    public ResponseEntity<List<Locations>> getAllLocations() {
-    List<Locations> location = LocationService.getAllLocations();
-    return new ResponseEntity<>(location, HttpStatus.OK);
-}
 
 @GetMapping("/{id}")
-public ResponseEntity<Location> getLocationById(@PathVariable Long id) {
-    Location Location = LocationService.getLocationById(id);
-    if (Location != null) {
-        return new ResponseEntity<>(Location, HttpStatus.OK);
+public ResponseEntity<Locations> getLocationById(@PathVariable Long locationId) {
+    Locations locations = locationSvc.getLocationById(locationId);
+    if (locations != null) {
+        return new ResponseEntity<>(locations, HttpStatus.OK);
     } else {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
 
 @PostMapping
-public ResponseEntity<Location> createLocation(@RequestBody Location Location) {
-    Location createdLocation = LocationService.createLocation(Location);
-    return new ResponseEntity<>(createdLocation, HttpStatus.CREATED);
+public ResponseEntity<Locations> createLocation(@RequestBody Locations geoLocation) {
+    Optional<Locations> createLocationData = locationSvc.createLocationData(geoLocation);
+    if (createLocationData.isPresent()) {
+        return new ResponseEntity<>(createLocationData.get(), HttpStatus.CREATED);
+    } else {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+    }
 }
 
 @PutMapping("/{id}")
-public ResponseEntity<Location> updateLocation(@PathVariable Long id, @RequestBody Location Location) {
-    Location updatedLocation = LocationService.updateLocation(id, Location);
+public ResponseEntity<Locations> updateLocation(@PathVariable Long locationId, @RequestBody Locations location) {
+    Locations updatedLocation = locationSvc.updateLocation(locationId, location);
     if (updatedLocation != null) {
         return new ResponseEntity<>(updatedLocation, HttpStatus.OK);
     } else {
@@ -72,8 +72,8 @@ public ResponseEntity<Location> updateLocation(@PathVariable Long id, @RequestBo
 }
 
 @DeleteMapping("/{id}")
-public ResponseEntity<Location> deleteLocation(@PathVariable Long id) {
-    if (LocationService.deleteLocation(id)) {
+public ResponseEntity<Locations> deleteLocation(@PathVariable Long locationId) {
+    if (locationSvc.deleteLocation(locationId)) {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     } else {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);

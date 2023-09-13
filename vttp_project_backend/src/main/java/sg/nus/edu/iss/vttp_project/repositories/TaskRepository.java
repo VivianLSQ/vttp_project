@@ -27,7 +27,7 @@ public class TaskRepository {
     private JdbcTemplate jdbcTemplate; 
 
     //Insert SQL Statements here 
-     private final String findAllTaskSQL = "select * from tasks"; 
+    private final String findAllTaskSQL = "select * from tasks"; 
     private final String addNewTaskSQL = "insert into tasks (task_id, content, date_added, due_date, notes) values (?, ?, ?, ?, ?)";
     private final String addTaskDetailsSQL = "insert into task_details (id, is_completed, category, priority) values (?, ?, ?, ?)";
     private final String updateTaskSql = "update tasks set content = ?, date_added  = ?, due_date  = ?, notes = ? where task_id = ?";
