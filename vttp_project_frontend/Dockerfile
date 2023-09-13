@@ -30,7 +30,7 @@ FROM openjdk:17-jdk-slim
 
 WORKDIR /app
 
-COPY --from=javabuilder /app/target/*.jar /app.jar
+COPY --from=javabuilder /app/target/vttp_project_backend.jar /app.jar
 
 ARG RAILWAY_ENVIRONMENT
 ENV RAILWAY_ENVIRONMENT=$RAILWAY_ENVIRONMENT

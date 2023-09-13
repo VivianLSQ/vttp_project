@@ -1,6 +1,5 @@
 package sg.nus.edu.iss.vttp_project.controllers;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +27,7 @@ public class LocationController {
     private OneMapService mapSvc; 
     @Autowired 
     private LocationService locationSvc; 
+
     
     public LocationController(OneMapService mapSvc) {
         this.mapSvc = mapSvc;
@@ -52,8 +52,8 @@ public ResponseEntity<Locations> getLocationById(@PathVariable Long locationId) 
 }
 
 @PostMapping
-public ResponseEntity<Locations> createLocation(@RequestBody Locations geoLocation) {
-    Optional<Locations> createLocationData = locationSvc.createLocationData(geoLocation);
+public ResponseEntity<Locations> createLocation(@RequestBody Locations geofenceData) {
+    Optional<Locations> createLocationData = locationSvc.createLocation(geofenceData);
     if (createLocationData.isPresent()) {
         return new ResponseEntity<>(createLocationData.get(), HttpStatus.CREATED);
     } else {
@@ -73,7 +73,7 @@ public ResponseEntity<Locations> updateLocation(@PathVariable Long locationId, @
 
 @DeleteMapping("/{id}")
 public ResponseEntity<Locations> deleteLocation(@PathVariable Long locationId) {
-    if (locationSvc.deleteLocation(locationId)) {
+    if (locationSvc.deleteLocation(locationId) != null) {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     } else {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);

@@ -3,6 +3,7 @@ package sg.nus.edu.iss.vttp_project.repositories;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -24,7 +25,7 @@ public class LocationRepository {
      private final String deleteLocationById = "delete from geo_location where location_id = ?";
  
 
-    public Long createLocationData(Locations geoLocation) {
+    public Long createLocation(Locations geoLocation) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(con -> {
             PreparedStatement ps = con.prepareStatement(createGeoFenceSQL, Statement.RETURN_GENERATED_KEYS);
@@ -47,20 +48,32 @@ public class LocationRepository {
         return geoLocation;
     }
 
-    public Integer updateLocation(Locations location) {
-        int iLocationUpdated = 0;
-
-        iLocationUpdated = jdbcTemplate.update(updateLocationSql, location.getLocationName(), location.getLatitude(), location.getLongitude(), location.getRadius(), location.getLocationId());
-
-        return iLocationUpdated;
+    //Change in destination or radius (selected)
+    public Locations updateLocation(Locations location) {
+        int rowsUpdated = jdbcTemplate.update(updateLocationSql, location.getLocationName(), location.getLatitude(), location.getLongitude(), location.getRadius(), location.getLocationId());
+        if(rowsUpdated > 0){
+         Locations updatedLocation = jdbcTemplate.queryForObject(
+            updateLocationSql,
+            BeanPropertyRowMapper.newInstance(Locations.class),
+            location.getLocationId()
+        );
+        
+        return updatedLocation;
+        } else {
+            return null; // Update was not successful
     }
 
-    public Integer deleteLocation(Long locationId) {
-        int iLocationDeleted = 0;
+}
 
-        iLocationDeleted = jdbcTemplate.update(deleteLocationById,locationId);
+    public Locations deleteLocation(Long locationId) {
+        Locations locationToDelete = null;
 
-        return iLocationDeleted;
+        int rowsAffected  = jdbcTemplate.update(deleteLocationById,locationId);
+        if(rowsAffected > 0){
+            return locationToDelete; 
+      } else{
+            return null; //EmptyResultDataAccessException 
+      }
     }
 
 }

@@ -8,10 +8,10 @@ import { map } from 'rxjs';
 export class EmailService {
 
   constructor(private http : HttpClient) { }
-  private url = 'YOUR_API_ENDPOINT';
+  private readonly apiURL = '/api/confirmationMail';
 
   SendEmail(input: any) {
-    return this.http.post(this.url, input).pipe(
+    return this.http.post(this.apiURL, input).pipe(
       map(
         (response: any) => {
           if (response) {
