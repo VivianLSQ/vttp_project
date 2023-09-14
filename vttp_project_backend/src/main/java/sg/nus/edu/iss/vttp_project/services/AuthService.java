@@ -1,14 +1,15 @@
 package sg.nus.edu.iss.vttp_project.services;
 
-import java.util.ArrayList;
+
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.HashMap; 
 import java.util.Map;
+// import java.util.ArrayList;
+// import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+// import org.springframework.security.core.GrantedAuthority;
+// import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -39,11 +40,11 @@ public class AuthService implements UserDetailsService {
         return new UserPrincipal(user);
     }
 
-   private static List<GrantedAuthority> getAuthorities(List<String> roles) {
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        roles.forEach(role -> authorities.add(new SimpleGrantedAuthority(role)));
-        return authorities;
-    }
+//    private static List<GrantedAuthority> getAuthorities(List<String> roles) {
+//         List<GrantedAuthority> authorities = new ArrayList<>();
+//         roles.forEach(role -> authorities.add(new SimpleGrantedAuthority(role)));
+//         return authorities;
+//     }
 
     public AuthService(JwtConfig jwtConfig) {
         this.jwtConfig = jwtConfig;

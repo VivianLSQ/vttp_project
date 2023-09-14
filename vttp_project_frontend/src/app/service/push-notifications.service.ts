@@ -22,7 +22,7 @@ export class PushNotificationsService {
       this.client.onDisconnect = (frame) => {
         console.log('Disconnected: ' + frame);
           // to display disconnected message to user
-         //To-do: update UI
+         //To-do: update frontend
       };
 
       //auto-reconnect
@@ -35,12 +35,11 @@ export class PushNotificationsService {
     };
 
   private subscribeToNotifications(): void {
-    const destination = '/user/queue/notifications';
+    const destination = '/user/notifications';
     this.client.subscribe(destination, (message: IMessage) => {
       this.handleNotification(message.body);
     });
   }
-
 
   private handleNotification(notificationText: string): void {
     console.log('Received notification:', notificationText);
@@ -48,14 +47,13 @@ export class PushNotificationsService {
   }
 
   sendNotificationToUser(user: string, notification: string): void {
-    const destination = `/user/queue/notifications`;
+    const destination = `/user/notifications`;
     const publishParams = {
       destination,
       body: JSON.stringify({ text: notification }),
     };
     this.client.publish(publishParams);
   }
-
 
 }
 

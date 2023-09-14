@@ -11,7 +11,7 @@ import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 import sg.nus.edu.iss.vttp_project.models.WebSocketChat;
 
 @Component
-public class WebSocketListener {
+public class WebSocketListenerService {
 
     @Autowired
     private SimpMessageSendingOperations msgTemplate;
@@ -28,11 +28,11 @@ public class WebSocketListener {
         String username = (String) headerAccessor.getSessionAttributes().get("username");
         if(username != null) {
 
-            WebSocketChat chatMsg = new WebSocketChat();
-            chatMsg.setType("Leave");
-            chatMsg.setSender(username);
+            WebSocketChat pushNotifications = new WebSocketChat();
+            pushNotifications.setType("Approaching Destination");
+            pushNotifications.setSender(username);
 
-            msgTemplate.convertAndSend("/topic/public", chatMsg);
+            msgTemplate.convertAndSend("/user/notifications", pushNotifications);
         }
     }
     
