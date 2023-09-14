@@ -11,7 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { TaskService } from './service/task.service';
 import { MatDialogModule } from '@angular/material/dialog';
-import { WebSocketService } from './service/WebSocket.service';
+import { PushNotificationsService } from './service/push-notifications.service';
 import { WebsocketChatComponent } from './components/websocket-chat/websocket-chat.component';
 import { FormsModule } from '@angular/forms'; //to handle two way binding - ngModel
 import { AngularFireModule } from '@angular/fire/compat';
@@ -60,7 +60,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     }),
     //AngularFireModule.initializeApp(environment.firebase) //error here
   ],
-  providers: [TaskService, WebSocketService, EmailService],
+  providers: [TaskService, PushNotificationsService, EmailService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
