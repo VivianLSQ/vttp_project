@@ -63,12 +63,11 @@ public class TaskRepository {
 
             @Override
             public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-                PreparedStatement ps = con.prepareStatement(addNewTaskSQL, new String[] {"order_id"});
-                ps.setInt(1, task.getTaskId());
-                ps.setString(2, task.getContent());
-                ps.setDate(3, task.getDateAdded()); //changed Date type to sql
-                ps.setDate(4, task.getDueDate());
-                ps.setString(5, task.getNotes());
+                PreparedStatement ps = con.prepareStatement(addNewTaskSQL, new String[] {"task_id"});
+                ps.setString(1, task.getContent());
+                ps.setDate(2, task.getDateAdded()); //changed Date type to sql
+                ps.setDate(3, task.getDueDate());
+                ps.setString(4, task.getNotes());
 
                 return ps;
             }
@@ -88,7 +87,6 @@ public class TaskRepository {
         } else {
             return false;
         }
-    
     }
     
     //Update/edit existing Task entry

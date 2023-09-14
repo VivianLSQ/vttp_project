@@ -21,10 +21,11 @@ import { EmailService } from './service/email.service';
 import { UserLoginComponent } from './components/user-login/user-login.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { UserRegistrationComponent } from './components/user-registration/user-registration.component';
-//import { initializeApp } from "firebase/app/";
-//import { getMessaging } from "firebase/messaging";
-//import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-//import { AngularFireAuthModule } from "@angular/fire/compat/auth";
+import { GeoLocationComponent } from './components/geo-location/geo-location.component';
+import { initializeApp } from "firebase/app/";
+import { getMessaging } from "firebase/messaging";
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 
 
 
@@ -39,7 +40,8 @@ import { UserRegistrationComponent } from './components/user-registration/user-r
     EmailFormComponent,
     UserLoginComponent,
     AlertComponent,
-    UserRegistrationComponent
+    UserRegistrationComponent,
+    GeoLocationComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,7 @@ import { UserRegistrationComponent } from './components/user-registration/user-r
     ReactiveFormsModule,
     FormsModule,
     MatDialogModule,
-    AngularFireModule.initializeApp(environment.firebase) //error here
+    //AngularFireModule.initializeApp(environment.firebase) //error here
   ],
   providers: [TaskService, WebSocketService, EmailService],
   bootstrap: [AppComponent]

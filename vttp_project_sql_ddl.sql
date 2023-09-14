@@ -22,3 +22,6 @@ create table taskDetails(
     constraint fk_task_details_order foreign key (task_id) references tasks(task_id) ON DELETE CASCADE
 ); 
 
+/*add locations and link to tasks 
+
+

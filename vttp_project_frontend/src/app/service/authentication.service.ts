@@ -10,7 +10,7 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient ) { }
 
-  private readonly apiUrl = '/api/auth';
+  private readonly apiUrl = '/api/authentication';
 
   login(user: User): Observable<User> {
     const authData = btoa(`${user.email}:${user.password}`);

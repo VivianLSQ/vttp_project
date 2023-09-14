@@ -72,6 +72,7 @@
 			<artifactId>org.apache.servicemix.bundles.spring-websocket</artifactId>
 			<version>4.3.30.RELEASE_1</version>
 		</dependency>
+		<!--Json Converter-->
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -98,13 +99,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
 		</dependency>
-		<dependencies>
-			<dependency>
-				<groupId>com.nimbusds</groupId>
-				<artifactId>nimbus-jose-jwt</artifactId>
-				<version>8.27</version> 
-			</dependency>
-		</dependencies>
 		 <!-- JWT Support -->
 		<!-- <dependency>
 			<groupId>io.jsonwebtoken</groupId>
@@ -126,11 +120,23 @@
 			<artifactId>jjwt-jackson</artifactId>
 			<version>0.11.5</version>
 		</dependency>
+		 <!-- Auth0 Java JWT library -->
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>4.4.0</version> 
+		</dependency>
 		<!--SQL-->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.28</version> <!-- Use the appropriate version -->
+			<version>8.0.28</version> 
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax.json/javax.json-api -->
+		<dependency>
+			<groupId>javax.json</groupId>
+			<artifactId>javax.json-api</artifactId>
+			<version>1.1.4</version>
 		</dependency>
  </dependencies>
 

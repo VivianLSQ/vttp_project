@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from "../environments/environment";
-import { getMessaging, getToken, onMessage } from "firebase/messaging";
+//import { getMessaging, getToken, onMessage } from "@firebase/messaging";
 import { AlertService } from './service/alert.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { AlertService } from './service/alert.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'vttp_project_frontend';
   message:any = null;
   constructor(private alertSvc: AlertService) {}
@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
     this.alertSvc.clearAlertMessage();
   }
 
-
+/*
   ngOnInit(): void {
     this.requestPermission();
     this.listen();
@@ -62,4 +62,6 @@ export class AppComponent implements OnInit {
       this.message=payload;
     });
   }
+
+*/
 }

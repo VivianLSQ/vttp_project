@@ -10,7 +10,9 @@
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "typeRoots": ["node_modules/@types", "./types"],
+    //"typeRoots": ["./node_modules/@types", "./types"],
+    //"types":[ "node", "@types/stomp.js", "jest"],
+    "types":[ "node", "jest"],
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
@@ -32,7 +34,7 @@
     "ts-node": {
         "esm": true
     },
-    
+
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,

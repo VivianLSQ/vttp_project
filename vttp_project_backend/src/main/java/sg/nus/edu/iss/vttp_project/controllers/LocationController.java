@@ -5,40 +5,22 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 
 import sg.nus.edu.iss.vttp_project.models.Locations;
 import sg.nus.edu.iss.vttp_project.services.LocationService;
-import sg.nus.edu.iss.vttp_project.services.OneMapService;
 
-@RestController
-@RequestMapping("/api/onemap")
+@Controller
 public class LocationController {
 
-    @Autowired
-    private OneMapService mapSvc; 
     @Autowired 
     private LocationService locationSvc; 
-
-    
-    public LocationController(OneMapService mapSvc) {
-        this.mapSvc = mapSvc;
-    }
-
-    @GetMapping("/routing")
-    public Object getRoutingData() {
-        return mapSvc.callRoutingApi();
-    }
-
-    //Able to make a get request to '/api/onemap/routing'
 
 
 @GetMapping("/{id}")
