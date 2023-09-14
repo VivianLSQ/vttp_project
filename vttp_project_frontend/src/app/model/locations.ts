@@ -1,5 +1,5 @@
 export interface Location{
-  id: Long;
+  id: number; 
   locationName: String;
   latitude: number; //originally double
   longitude: number;

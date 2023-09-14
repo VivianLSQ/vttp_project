@@ -12,19 +12,19 @@ export class GeoLocationService {
   private readonly apiURL = '/api/geolocation';
 
   createLocation(location: Location): Observable<Location> {
-    return this.http.post<Location>('${this.apiURL}', location);
+    return this.http.post<Location>(`${this.apiURL}`, location);
   }
 
-  getLocationById(location: Location): Observable<Location>{
-    return this.http.get<Location>('${this.apiURL}/${id}')
+  getLocationById(id: number, location: Location): Observable<Location>{
+    return this.http.get<Location>(`${this.apiURL}/${id}`)
   }
 
-  updateLocation(id: Long, location: Location): Observable<Location> {
-    return this.http.put<Location>('${this.apiURL}/${id}', location);
+  updateLocation(id: number, location: Location): Observable<Location> {
+    return this.http.put<Location>(`${this.apiURL}/${id}`, location);
   }
 
-  deleteLocation(id: Long): Observable<Location> {
-    return this.http.delete<Location>('${this.apiURL}/${id}');
+  deleteLocation(id: number): Observable<Location> {
+    return this.http.delete<Location>(`${this.apiURL}/${id}`);
   }
 
 }

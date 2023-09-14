@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -26,6 +26,7 @@ import { initializeApp } from "firebase/app/";
 import { getMessaging } from "firebase/messaging";
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 
@@ -51,6 +52,12 @@ import { AngularFireAuthModule } from "@angular/fire/compat/auth";
     ReactiveFormsModule,
     FormsModule,
     MatDialogModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
     //AngularFireModule.initializeApp(environment.firebase) //error here
   ],
   providers: [TaskService, WebSocketService, EmailService],

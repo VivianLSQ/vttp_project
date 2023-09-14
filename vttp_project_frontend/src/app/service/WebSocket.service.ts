@@ -7,6 +7,7 @@ import SockJS from 'sockjs-client';
   providedIn: 'root'
 })
 export class WebSocketService {
+  //used for reminding user about approaching destination, or upcoming task by sending push notifications
 
   private client: Client;
 

@@ -12,11 +12,11 @@ const routes: Routes = [
   {path: "", component: MainComponent, title:"Home Page"},
   {path: "/task", component: NewTaskComponent, title:"Add New Task"},
   {path: "/taskDetails", component: TaskDetailsComponent, title:"Task Details"},
-  {path: "/task/:taskId/update", component: TaskDetailsComponent, title:"Task Details"}, //to edit 
+  {path: "/task/:taskId/update", component: TaskDetailsComponent, title:"Task Details"}, //to edit
   {path: "/emailForm", component: EmailFormComponent, title:"Email Confirmation"},
   {path: "/geoLocation", component: GeoLocationComponent, title:"Geofencing Page"},
-  {path: "/userLogin", component: UserLoginComponent, title:"Login Page"},
-  {path: "/userRegistration", component: UserRegistrationComponent, title:"Registration Page"},
+  {path: "/authentication/login", component: UserLoginComponent, title:"Login Page"},
+  {path: "/authentication/register", component: UserRegistrationComponent, title:"Registration Page"},
   { path: '**', redirectTo: '' },
 ];
 
