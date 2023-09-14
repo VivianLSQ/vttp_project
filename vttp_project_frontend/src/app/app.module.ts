@@ -27,6 +27,7 @@ import { getMessaging } from "firebase/messaging";
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { UserLogoutComponent } from './user-logout/user-logout.component';
 
 
 
@@ -42,7 +43,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     UserLoginComponent,
     AlertComponent,
     UserRegistrationComponent,
-    GeoLocationComponent
+    GeoLocationComponent,
+    UserLogoutComponent
   ],
   imports: [
     BrowserModule,
