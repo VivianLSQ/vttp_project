@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class GeoLocationComponent {
 
+  //To update geofence location
   constructor(private route: ActivatedRoute) {
     this.route.params.subscribe(params => {
       const locationId = +params['id']; // Extract ID from route parameter

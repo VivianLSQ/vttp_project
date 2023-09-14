@@ -26,12 +26,13 @@ create table taskDetails(
 create table geoLocation(
 	location_id int not null auto_increment,
     location_name char(64),
-    latitude decimal,
-    longitide decimal,
+    latitude decimal(10, 10),
+    longitide decimal(10, 10),
     radius varchar(64),
     primary key (location_id)
 );
 
+/*
 create table users
 (
     id           int auto_increment,
@@ -42,7 +43,7 @@ create table users
     workAddress   varchar(64), 
     primary key (id)
 );
-
+*/
 
 
 
