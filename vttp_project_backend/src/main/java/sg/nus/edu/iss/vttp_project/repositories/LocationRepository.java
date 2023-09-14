@@ -19,7 +19,7 @@ public class LocationRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate; 
 
-     private final String createGeoFenceSQL = "insert into geo_location (location_Id, location_name, latitude, longitude, radius) values (?, ?, ?, ?, ?)";
+     private final String createGeoFenceSQL = "insert into geo_location (location_id, location_name, latitude, longitude, radius) values (?, ?, ?, ?, ?)";
      private final String findByLocationIdSql = "select * from geo_location where location_id = ?";
      private final String updateLocationSql = "update geo_location set location_name = ?, latitude = ?, longitude = ?, radius = ? where location_id = ?";
      private final String deleteLocationById = "delete from geo_location where location_id = ?";

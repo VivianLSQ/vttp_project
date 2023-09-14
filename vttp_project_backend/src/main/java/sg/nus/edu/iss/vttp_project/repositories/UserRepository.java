@@ -50,10 +50,11 @@ public class UserRepository {
             @Override
             public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
                 PreparedStatement ps = con.prepareStatement(addNewUserSql, new String[] {"id"});
-                ps.setString(1, user.getUsername());
-                ps.setString(2, user.getPassword()); 
-                ps.setString(3, user.getHomeAddress());
-                ps.setString(4, user.getWorkAddress());
+                ps.setString(1, user.getEmail());
+                ps.setString(2, user.getUsername());
+                ps.setString(3, user.getPassword()); 
+                ps.setString(4, user.getHomeAddress());
+                ps.setString(5, user.getWorkAddress());
 
                 return ps;
             }

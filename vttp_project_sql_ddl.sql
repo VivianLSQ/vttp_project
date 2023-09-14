@@ -9,7 +9,7 @@ create table tasks(
     notes     text,
     constraint pk_tasks_id primary key(task_id)
 ); 
-*/
+
 
 
 create table taskDetails(
@@ -21,7 +21,28 @@ create table taskDetails(
     constraint pk_task_details_id primary key (id),
     constraint fk_task_details_order foreign key (task_id) references tasks(task_id) ON DELETE CASCADE
 ); 
+ */
+ 
+create table geoLocation(
+	location_id int not null auto_increment,
+    location_name char(64),
+    latitude decimal,
+    longitide decimal,
+    radius varchar(64),
+    primary key (location_id)
+);
 
-/*add locations and link to tasks 
+create table users
+(
+    id           int auto_increment,
+    email        varchar(64) not null unique,
+    username 	 varchar(32) not null unique,
+    password     varchar(64) not null,
+	homeAddress   varchar(64), 
+    workAddress   varchar(64), 
+    primary key (id)
+);
+
+
 
 
